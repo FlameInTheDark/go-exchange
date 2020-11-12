@@ -15,7 +15,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, r := range *rates {
+	for _, r := range rates {
 		var rates string
 		for _, v := range r.Rate {
 			if v.Name == "RUB" {
@@ -30,9 +30,15 @@ func main() {
 		log.Fatal(err)
 	}
 
-	for _, r := range *ratesLatest {
+	for _, r := range ratesLatest {
 		for _, v := range r.Rate {
 			fmt.Printf("%s | Ex: %f\n", v.Name, v.Exchange)
 		}
 	}
+
+	converted, err := exchange.Convert("EUR", "RUB", 40)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("40 EUR = %f RUB\n", converted)
 }

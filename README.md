@@ -33,5 +33,11 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
+
+    // Convert amount of first currency to second
+	converted, err := exchange.Convert("EUR", "RUB", 40)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 ```

@@ -18,7 +18,7 @@ type RateDay struct {
 
 type Rates []RateDay
 
-func (r *RawRateHistory) GetRates() (*Rates, error) {
+func (r *RawRateHistory) GetRates() (Rates, error) {
 	var rateDays Rates
 	for d, v := range *r {
 		var rate []Rate
@@ -41,7 +41,7 @@ func (r *RawRateHistory) GetRates() (*Rates, error) {
 	sort.SliceStable(rateDays, func(i, j int) bool {
 		return rateDays[i].Date.Year() < rateDays[j].Date.Year()
 	})
-	return &rateDays, nil
+	return rateDays, nil
 }
 
 func (r Rates) CalcDifference() {
@@ -61,12 +61,12 @@ func (r Rates) CalcDifference() {
 	}
 }
 
-func (r *RawRate) GetRates() *Rates {
+func (r *RawRate) GetRates() Rates {
 	var rateDays Rates
 	var rate []Rate
 	for n, v := range *r {
 		rate = append(rate, Rate{Name: n, Exchange: v})
 	}
 	rateDays = append(rateDays, RateDay{Date: time.Now(), Rate: rate})
-	return &rateDays
+	return rateDays
 }
