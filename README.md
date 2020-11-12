@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-    // Get exchange between two dates for specified currencies
+    // Get exchange history for specified currencies between two dates
     from := time.Date(2020, 9, 10, 0, 0, 0, 0, &time.Location{})
     to := time.Date(2020, 11, 11, 0, 0, 0, 0, &time.Location{})
     ratesHistory, err := exchange.GetExchangeHistory("USD", []string{"RUB", "EUR"}, from, to)
@@ -28,13 +28,13 @@ func main() {
         log.Fatal(err)
     }
 
-    // Get latest exchange for specified currencies
+    // Get the latest exchange for the specified currencies
     ratesLatest, err := exchange.GetExchangeLatest("USD", []string{"RUB", "EUR"})
     if err != nil {
         log.Fatal(err)
     }
 
-    // Convert amount of first currency to second
+    // Convert the amount of the first currency to a second
     converted, err := exchange.Convert("EUR", "RUB", 40)
     if err != nil {
         log.Fatal(err)

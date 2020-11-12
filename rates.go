@@ -18,6 +18,7 @@ type RateDay struct {
 
 type Rates []RateDay
 
+// Sort and returns rates from history
 func (r *RawRateHistory) GetRates() (Rates, error) {
 	var rateDays Rates
 	for d, v := range *r {
@@ -44,6 +45,7 @@ func (r *RawRateHistory) GetRates() (Rates, error) {
 	return rateDays, nil
 }
 
+// Calculates difference between every exchange rate
 func (r Rates) CalcDifference() {
 	if len(r) < 2 {
 		return
