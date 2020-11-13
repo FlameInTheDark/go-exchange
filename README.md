@@ -39,5 +39,11 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
+
+    // Get the names of all available currencies
+    names, err := exchange.GetNames()
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```

@@ -41,4 +41,10 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Printf("40 EUR = %f RUB\n", converted)
+
+	names, err := exchange.GetNames()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(names)
 }

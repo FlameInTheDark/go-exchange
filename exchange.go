@@ -40,3 +40,16 @@ func Convert(from, to string, amount float64) (float64, error) {
 
 	return rates[0].Rate[0].Exchange * amount, nil
 }
+
+// Get the names of all available currencies
+func GetNames() ([]string, error) {
+	raw, err := getRatesLatest("", []string{})
+	if err != nil {
+		return nil, err
+	}
+	var names []string
+	for n, _ := range raw.Rates {
+		names = append(names, n)
+	}
+	return names, nil
+}
