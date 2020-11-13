@@ -17,7 +17,7 @@ func main() {
 	}
 	for _, r := range rates {
 		var rates string
-		for _, v := range r.Rate {
+		for _, v := range r.Rates {
 			if v.Name == "RUB" {
 				rates += fmt.Sprintf("%s Ex:%f, Dif:%f", v.Name, v.Exchange, v.Difference)
 			}
@@ -31,7 +31,7 @@ func main() {
 	}
 
 	for _, r := range ratesLatest {
-		for _, v := range r.Rate {
+		for _, v := range r.Rates {
 			fmt.Printf("%s | Ex: %f\n", v.Name, v.Exchange)
 		}
 	}

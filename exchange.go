@@ -5,7 +5,7 @@ import (
 )
 
 // Get exchange history for specified currencies between two dates
-func GetExchangeHistory(base string, symbols []string, from, to time.Time) (Rates, error) {
+func GetExchangeHistory(base string, symbols []string, from, to time.Time) (RateDays, error) {
 	raw, err := getRatesHistory(base, symbols, from, to)
 	if err != nil {
 		return nil, err
@@ -20,7 +20,7 @@ func GetExchangeHistory(base string, symbols []string, from, to time.Time) (Rate
 }
 
 // Get the latest exchange for the specified currencies
-func GetExchangeLatest(base string, symbols []string) (Rates, error) {
+func GetExchangeLatest(base string, symbols []string) (RateDays, error) {
 	raw, err := getRatesLatest(base, symbols)
 	if err != nil {
 		return nil, err
@@ -38,7 +38,7 @@ func Convert(from, to string, amount float64) (float64, error) {
 		return 0, err
 	}
 
-	return rates[0].Rate[0].Exchange * amount, nil
+	return rates[0].Rates[0].Exchange * amount, nil
 }
 
 // Get the names of all available currencies
