@@ -33,7 +33,7 @@ type RawRateHistory map[string]RawRate
 func getRatesHistory(base string, symbols []string, from, to time.Time) (*ResponseHistory, error) {
 	sym := prepareSymbols(symbols)
 	resp, err := http.Get(fmt.Sprintf(domain+"history?symbols=%s&base=%s&start_at=%s&end_at=%s",
-		sym, base, dateToString(from), dateToString(to)))
+		sym, strings.ToUpper(base), dateToString(from), dateToString(to)))
 	if err != nil {
 		return nil, fmt.Errorf("api request: %s", err)
 	}
@@ -57,7 +57,7 @@ func getRatesHistory(base string, symbols []string, from, to time.Time) (*Respon
 func getRatesLatest(base string, symbols []string) (*ResponseLatest, error) {
 	sym := prepareSymbols(symbols)
 	resp, err := http.Get(fmt.Sprintf(domain+"latest?symbols=%s&base=%s",
-		sym, base))
+		sym, strings.ToUpper(base)))
 	if err != nil {
 		return nil, fmt.Errorf("api request: %s", err)
 	}
